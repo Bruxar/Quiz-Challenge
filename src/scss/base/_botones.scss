@@ -1,9 +1,5 @@
 .boton-normal{
-    @include boton($celeste, inline-block);
-}
-
-.boton-normal-block{
-    @include boton($celeste, block);
+    @include boton($celeste, 80%);
 }
 
 .boton-verde{
