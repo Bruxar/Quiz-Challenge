@@ -21,7 +21,7 @@ const Score = ({ score, totalQuestions }) => {
         <p><span>{score}</span> / {totalQuestions}</p>
       </div>
       <p className='message-score'>{message}</p>
-      <a href="/">Restart</a>
+      <a href="/Quiz-Challenge/">Restart</a>
     </div>
   );
 };
