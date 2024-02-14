@@ -7,7 +7,7 @@ const questionCard = ({question, options, handleAnswer}) => {
             <ul>
                 {options.map((option, index) => (
                     <li key={index}>
-                        <button onClick={() => handleAnswer(option)}>
+                        <button className="boton-normal" onClick={() => handleAnswer(option)}>
                             {option}
                         </button>
                     </li>
