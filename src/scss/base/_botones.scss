@@ -2,8 +2,16 @@
     @include boton($celeste, 80%);
 }
 
+.boton-normal-estatico{
+    @include boton($celeste, 30rem);
+}
+
 .boton-verde{
     @include boton($verde, 80%);
+}
+
+.boton-verde-estatico{
+    @include boton($verde, 30rem);
 }
 
 .boton-rojo{

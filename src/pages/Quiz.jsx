@@ -1,9 +1,11 @@
-// Quiz.jsx
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import QuestionCard from '../components/QuestionCard';
 import { fetchQuestionsWithDelay } from '../api/triviaApi';
+import { useLocation } from 'react-router-dom';
 
 const Quiz = () => {
+    const location = useLocation();
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -12,11 +14,20 @@ const Quiz = () => {
 
     async function getTriviaData() {
         try {
-            const data = await fetchQuestionsWithDelay(100);
+            const searchParams = new URLSearchParams(location.search);
+            const amount = searchParams.get('amount') || 5; // Valor predeterminado de 5 preguntas
+            const category = searchParams.get('category');
+            const difficulty = searchParams.get('difficulty');
+            const type = searchParams.get('type');
+
+            const data = await fetchQuestionsWithDelay(amount, category, difficulty, type);
             setQuestions(data.results.map(question => ({
                 ...question,
                 question: removeCharacters(question.question),
-                options: shuffleArray(question.incorrect_answers.concat(question.correct_answer)).map(removeCharacters),
+                options: shuffleArray([
+                    ...question.incorrect_answers,
+                    question.correct_answer,
+                ]),
             })));
             setLoading(false);
         } catch (error) {
@@ -72,7 +83,10 @@ const Quiz = () => {
                     />
                 </div>
             ) : (
-                <p>Score: {score}</p>
+                <div>
+                    <p>Score: {score}</p>
+                    <Link to="/">Volver a jugar</Link>
+                </div>
             )}
         </div>
     );
