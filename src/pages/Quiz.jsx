@@ -13,12 +13,13 @@ const Quiz = () => {
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [score, setScore] = useState(0);
     const [loading, setLoading] = useState(true);
-    
+    const [totalQuestions, setTotalQuestions] = useState(0);
     
     async function getTriviaData() {
         try {
             const searchParams = new URLSearchParams(location.search);
             const amount = searchParams.get('amount') || 5; // Valor predeterminado de 5 preguntas
+            setTotalQuestions(amount);
             const category = searchParams.get('category');
             const difficulty = searchParams.get('difficulty');
             const type = searchParams.get('type');
@@ -88,6 +89,7 @@ const Quiz = () => {
             ) : (
                 <Score 
                     score={score}
+                    totalQuestions={totalQuestions}
                 />
             )}
         </div>

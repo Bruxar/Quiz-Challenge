@@ -1,0 +1,36 @@
+.container-score{
+    padding: 2rem 2rem 4rem 2rem;
+    width: 90%;
+    background-color: $azul-oscuro;
+    border-radius: 5rem;
+    color: $blanco;
+    text-align: center;
+    @include centrar-elemento;
+
+    @include tablet{
+        width: 40rem;
+    }
+    
+    .score{
+        p,h1{
+            color: $blanco;
+            font-weight: 700;
+            margin: 0;
+        }
+    }
+
+    .message-score{
+        color: $blanco;
+        margin-top: 0;
+    }
+    span{
+        color: $verde;
+        font-weight: 700;
+    }
+
+    a{
+        @include boton($rojo, 10rem);
+        color: $blanco;
+        
+    }
+}
