@@ -1,3 +1,4 @@
+// Quiz.jsx
 import React, { useState, useEffect } from 'react';
 import QuestionCard from '../components/QuestionCard';
 import { fetchQuestionsWithDelay } from '../api/triviaApi';
@@ -5,7 +6,7 @@ import { fetchQuestionsWithDelay } from '../api/triviaApi';
 const Quiz = () => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [correctAnswer, setCorrectAnswer] = useState('');
+    const [selectedAnswer, setSelectedAnswer] = useState('');
     const [score, setScore] = useState(0);
     const [loading, setLoading] = useState(true);
 
@@ -15,10 +16,7 @@ const Quiz = () => {
             setQuestions(data.results.map(question => ({
                 ...question,
                 question: removeCharacters(question.question),
-                options: shuffleArray([
-                    ...question.incorrect_answers,
-                    question.correct_answer,
-                ]),
+                options: shuffleArray(question.incorrect_answers.concat(question.correct_answer)).map(removeCharacters),
             })));
             setLoading(false);
         } catch (error) {
@@ -31,7 +29,6 @@ const Quiz = () => {
     }, []);
     
     const shuffleArray = (array) => {
-        // Creamos una copia del array para evitar modificar el original
         const newArray = [...array];
         for (let i = newArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -41,17 +38,19 @@ const Quiz = () => {
     };
 
     const handleAnswer = (selectedOption) => {
-        setCorrectAnswer(questions[currentQuestion].correct_answer);
-
+        setSelectedAnswer(selectedOption);
         if (selectedOption === questions[currentQuestion].correct_answer) {
             setScore(score + 1);
         }
-
-        setCurrentQuestion(currentQuestion + 1);
+        setTimeout(() => {
+            setCurrentQuestion(currentQuestion + 1);
+            setSelectedAnswer('');
+        }, 1000);
     };
 
-    const removeCharacters = (question) => {
-        return question
+    const removeCharacters = (text) => {
+        return text
+            .replace(/(&eacute;)/g, 'é')
             .replace(/(&quot;)/g, '"')
             .replace(/(&rsquo;)/g, "'")
             .replace(/(&#039;)/g, "'")
@@ -68,7 +67,8 @@ const Quiz = () => {
                         question={questions[currentQuestion].question}
                         options={questions[currentQuestion].options}
                         handleAnswer={handleAnswer}
-                        correctAnswer={correctAnswer}
+                        selectedAnswer={selectedAnswer}
+                        correctAnswer={questions[currentQuestion].correct_answer}
                     />
                 </div>
             ) : (

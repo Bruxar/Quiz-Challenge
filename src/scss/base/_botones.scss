@@ -7,5 +7,5 @@
 }
 
 .boton-rojo{
-    @include boton($rojo, &80);
+    @include boton($rojo, 80%);
 }

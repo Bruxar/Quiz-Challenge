@@ -1,15 +1,18 @@
+// QuestionCard.jsx
 import React from "react";
 
-const QuestionCard = ({ question, options, handleAnswer, correctAnswer }) => {
+const QuestionCard = ({ question, options, handleAnswer, selectedAnswer, correctAnswer }) => {
     return (
         <div className="card">
             <h2>{question}</h2>
             <ul>
                 {options.map((option, index) => {
-                    console.log(correctAnswer);
                     const isCorrect = option === correctAnswer;
-                    console.log(isCorrect);
-                    const buttonClass = isCorrect ? 'boton-verde' : 'boton-normal';
+                    const isSelected = option === selectedAnswer;
+                    let buttonClass = 'boton-normal';
+                    if (isSelected) {
+                        buttonClass = isCorrect ? 'boton-verde' : 'boton-rojo';
+                    }
                     return (
                         <li key={index}>
                             <button 
