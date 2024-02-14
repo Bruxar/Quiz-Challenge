@@ -1,7 +1,8 @@
-// QuestionCard.jsx
 import React from "react";
 
 const QuestionCard = ({ question, options, handleAnswer, selectedAnswer, correctAnswer }) => {
+    const isAnswerSelected = selectedAnswer !== '';
+  
     return (
         <div className="card">
             <h2>{question}</h2>
@@ -18,6 +19,7 @@ const QuestionCard = ({ question, options, handleAnswer, selectedAnswer, correct
                             <button 
                                 className={buttonClass}
                                 onClick={() => handleAnswer(option)}
+                                disabled={isAnswerSelected} // Deshabilitar el botón si ya se ha seleccionado una respuesta
                             >
                                 {option}
                             </button>

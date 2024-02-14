@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import QuestionCard from '../components/QuestionCard';
 import { fetchQuestionsWithDelay } from '../api/triviaApi';
 import { useLocation } from 'react-router-dom';
+
+import QuestionCard from '../components/QuestionCard';
+import Score from '../components/Score';
 
 const Quiz = () => {
     const location = useLocation();
@@ -11,7 +13,8 @@ const Quiz = () => {
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [score, setScore] = useState(0);
     const [loading, setLoading] = useState(true);
-
+    
+    
     async function getTriviaData() {
         try {
             const searchParams = new URLSearchParams(location.search);
@@ -71,7 +74,7 @@ const Quiz = () => {
     return (
         <div className='contenedor contenedor-pregunta'>
             {loading ? (
-                <p>Loading...</p>
+                <div className="loader"></div>
             ) : questions.length > 0 && currentQuestion < questions.length ? (
                 <div>
                     <QuestionCard
@@ -83,10 +86,9 @@ const Quiz = () => {
                     />
                 </div>
             ) : (
-                <div>
-                    <p>Score: {score}</p>
-                    <Link to="/">Volver a jugar</Link>
-                </div>
+                <Score 
+                    score={score}
+                />
             )}
         </div>
     );
