@@ -84,6 +84,8 @@ const Quiz = () => {
                         handleAnswer={handleAnswer}
                         selectedAnswer={selectedAnswer}
                         correctAnswer={questions[currentQuestion].correct_answer}
+                        currentQuestion={currentQuestion}
+                        totalQuestions={totalQuestions}
                     />
                 </div>
             ) : (

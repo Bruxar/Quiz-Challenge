@@ -9,9 +9,15 @@ const Home = () => {
     const [type, setType] = useState('');
 
     const handleStartQuiz = () => {
-        // Validar los campos, aquí puedes agregar tus propias validaciones
+        // Verificar si el número de preguntas está dentro del rango permitido
+        if (numberOfQuestions < 1 || numberOfQuestions > 10) {
+            alert('Please enter a number between 1 and 10 for the number of questions.');
+            return;
+        }
+
+        // Validar los campos restantes
         if (!category || !difficulty || !type) {
-            alert('Por favor, completa todos los campos');
+            alert('Please complete all fields');
             return;
         }
 
@@ -31,7 +37,7 @@ const Home = () => {
                         type="number"
                         id="numberOfQuestions"
                         value={numberOfQuestions}
-                        onChange={(e) => setNumberOfQuestions(e.target.value)}
+                        onChange={(e) => setNumberOfQuestions(parseInt(e.target.value))}
                     />
                 </div>
                 <div className='elem-group'>
