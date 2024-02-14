@@ -7,12 +7,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-      <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/quiz" element={<Quiz />} />
-          </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/Quiz-Challenge/" element={<Home />} />
+        <Route path="/Quiz-Challenge/quiz" element={<Quiz />} />
+      </Routes>
+    </Router>
   );
 }
 

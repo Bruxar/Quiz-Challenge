@@ -22,12 +22,12 @@ const Home = () => {
         }
 
         // Redirigir a la página de la trivia con los parámetros seleccionados
-        navigate(`/quiz?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=${type}`);
+        navigate(`/Quiz-Challenge/quiz?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=${type}`);
     };
 
     return (
         <div className="contenedor home-container">
-            <img src="/quiz.png" alt="quiz icon" />
+            <img src="quiz.png" alt="quiz icon" />
             <form>
                 <div className='elem-group'>
                     <label htmlFor="numberOfQuestions">Number of Questions:</label>
