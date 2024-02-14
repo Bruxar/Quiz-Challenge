@@ -28,9 +28,10 @@
         font-weight: 700;
     }
 
-    a{
-        @include boton($rojo, 10rem);
+    button{
+        @include boton($rojo, 40%);
         color: $blanco;
-        
+        text-align: center;
+        min-width: 15rem;
     }
 }
