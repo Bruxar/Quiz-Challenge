@@ -28,10 +28,12 @@ const Quiz = () => {
             setQuestions(data.results.map(question => ({
                 ...question,
                 question: removeCharacters(question.question),
-                options: shuffleArray([
-                    ...question.incorrect_answers,
-                    question.correct_answer,
-                ]),
+                options: shuffleArray(
+                    [
+                        ...question.incorrect_answers.map(option => removeCharacters(option)), // Aplica removeCharacters a cada opción incorrecta
+                        removeCharacters(question.correct_answer) // Aplica removeCharacters a la respuesta correcta
+                    ]
+                ),
             })));
             setLoading(false);
         } catch (error) {
@@ -65,7 +67,8 @@ const Quiz = () => {
 
     const removeCharacters = (text) => {
         return text
-            .replace(/(&eacute;)/g, 'é')
+            .replace(/(&Eacute;)/g, 'é')
+            .replace(/(&Eacute;)/g, 'É')
             .replace(/(&quot;)/g, '"')
             .replace(/(&rsquo;)/g, "'")
             .replace(/(&#039;)/g, "'")
