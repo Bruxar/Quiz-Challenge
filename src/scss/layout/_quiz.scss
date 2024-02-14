@@ -9,22 +9,23 @@
 
 .card{
     h2{
-        font-size: 3rem;
+        font-size: 3.4rem;
         font-weight: 700;
         color: $platino;
     }
     padding: 2rem 3rem;
     background-color: $azul-oscuro;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
     border-radius: 1rem;
     text-align: center;
     ul{
         list-style: none;
         padding: 0;
+        margin-bottom: 3rem;
         li{
-            margin: 1rem 0;
+            margin: 1.2rem 0;
         }
     }
 }

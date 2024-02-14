@@ -50,10 +50,10 @@ const Quiz = () => {
 
     const removeCharacters = (question) => {
         return question
-            .replace(/(&quot\;)/g, '"')
-            .replace(/(&rsquo\;)/g, "'")
-            .replace(/(&#039\;)/g, "'")
-            .replace(/(&amp\;)/g, "&");
+            .replace(/(&quot;)/g, '"')
+            .replace(/(&rsquo;)/g, "'")
+            .replace(/(&#039;)/g, "'")
+            .replace(/(&amp;)/g, "&");
     };
 
     return (
@@ -69,10 +69,9 @@ const Quiz = () => {
                         selectedAnswer={selectedAnswer}
                         setSelectedAnswer={setSelectedAnswer}
                     />
-                    <p>Score: {score}</p>
                 </div>
             ) : (
-                <p>No questions available</p>
+                <p>Score: {score}</p>
             )}
         </div>
     );
