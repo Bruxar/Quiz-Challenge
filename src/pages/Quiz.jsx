@@ -5,7 +5,7 @@ import { fetchQuestionsWithDelay } from '../api/triviaApi';
 const Quiz = () => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [correctAnswer, setCorrectAnswer] = useState('');
     const [score, setScore] = useState(0);
     const [loading, setLoading] = useState(true);
 
@@ -41,11 +41,13 @@ const Quiz = () => {
     };
 
     const handleAnswer = (selectedOption) => {
+        setCorrectAnswer(questions[currentQuestion].correct_answer);
+
         if (selectedOption === questions[currentQuestion].correct_answer) {
             setScore(score + 1);
         }
+
         setCurrentQuestion(currentQuestion + 1);
-        setSelectedAnswer('');
     };
 
     const removeCharacters = (question) => {
@@ -66,8 +68,7 @@ const Quiz = () => {
                         question={questions[currentQuestion].question}
                         options={questions[currentQuestion].options}
                         handleAnswer={handleAnswer}
-                        selectedAnswer={selectedAnswer}
-                        setSelectedAnswer={setSelectedAnswer}
+                        correctAnswer={correctAnswer}
                     />
                 </div>
             ) : (

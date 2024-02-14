@@ -1,7 +1,7 @@
 // src/api/triviaApi.js
 import axios from 'axios';
 
-const API_URL = 'https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple';
+const API_URL = 'https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple';
 
 export const fetchQuestions = async () => {
   try {

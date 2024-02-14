@@ -3,18 +3,9 @@
 }
 
 .boton-verde{
-    @include boton($verde, inline-block);
-}
-
-.boton-verde-block{
-    @include boton($verde, block);
+    @include boton($verde, 80%);
 }
 
 .boton-rojo{
-    @include boton($rojo, inline-block);
+    @include boton($rojo, &80);
 }
-
-.boton-rojo-block{
-    @include boton($rojo, block);
-}
-
